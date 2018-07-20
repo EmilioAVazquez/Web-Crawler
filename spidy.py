@@ -1,13 +1,21 @@
 from selenium import webdriver
+#This library, Selenium, connects Python with a web browser in your machine, a.k.a. Chrome, Firefox, etc.
 from selenium.webdriver.common.by import By
+#This lbrary is use to wait for your web browser to wait to load a page or element in the page.
 from selenium.webdriver.chrome.options import Options
+#This library is use to make changes to the webbrowser, like adding an Ad block or specifying a path.
 import xml.etree.cElementTree as ET
-import pyqtgraph as pg#Plotting libraries
+#This library is use to make an xml tree that will store the data you scrape.
+import pyqtgraph as pg
+#For long scrapping sessions, this library will plot the status of the webcrawler.
 import multiprocessing
+#This library will increment the processeing and power of the webcrawler
 import numpy as np
+#This librbary will keep a log of some data variables.
 import time
-import os
+#This lobrary keep track of the running speed of the code
 
+#Crate or import a data type of your choice to facilitate the network transversal (I recomend a stack or queue data type)
 class Stack_Words(object):
     """
     The invariant of this data structure is that a word cannot be entered more than once.
@@ -115,17 +123,19 @@ class Stack_Words(object):
         file.close()
 
 #Global variables
-path_to_extension   = r'/Users/emiliovazquez/Desktop/3.31.2_0'
-path_to_driver1     =  "/Users/emiliovazquez/Desktop/govMex/chromedriver1"
-path_to_driver2     =  "/Users/emiliovazquez/Desktop/govMex/chromedriver2"
-# instantiate a chrome options object so you can set the size and headless preference
+path_to_extension   = r'/Users/emiliovazquez/Desktop/3.31.2_0'#This is the direction to the Adblocker on my computer
+path_to_driver1     =  "/Users/emiliovazquez/Desktop/govMex/chromedriver1"#This is the direction of one webdriver
+path_to_driver2     =  "/Users/emiliovazquez/Desktop/govMex/chromedriver2"#This is the direction of another webdriver
+# instantiate a chrome options object so you can set the size, extenssions, and headless preferences
 chrome_options      = Options()
 chrome_options.add_argument('load-extension=' + path_to_extension)#Adblocker
 chrome_options.add_argument("--headless")#Headless
-chrome_options.add_argument("--window-size=1920x1080")
+chrome_options.add_argument("--window-size=1920x1080")#size
+#Initializations of web browsers
 browser1            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver1 , port=9515)
 browser2            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver2 , port=9514)
 
+#This is the function that will do most of the job, here webpage will be tested step by step
 def job(browser_number, word, queue):
 
     if   browser_number == 1:
@@ -133,7 +143,7 @@ def job(browser_number, word, queue):
     elif browser_number  == 2:
         browser =  browser2
 
-    url      = "http://www.elmundo.es/diccionarios/"#URL to attack
+    url      = ""#some URL
     word = input_words.get()[0]
     #print (input_words.get()[0].encode('ascii', 'ignore'))#print(input_words.get()[0].encode('latin1').decode('utf8'))
     #print (word.encode('ascii', 'ignore'))#print(word.encode('latin1').decode('utf8'))
@@ -260,7 +270,7 @@ if __name__ == '__main__':
 
         if downloaded%(30) == 0:
             print(downloaded)
-            break
+            break#the number of iterations may be as big as you want
 
         if downloaded%(800) == 0:
             print(downloaded)
