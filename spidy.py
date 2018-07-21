@@ -69,6 +69,7 @@ class Stack_Words(object):
         array = self.del_logged(array)
         self.del_dupl(array)#mutator
         self.words.extend(array)
+        self.check()#will check for cuplciates in log and words
         self.size   = len(self.words)
 
     def del_dupl(self, array):#Best case complexity: assuming N >> len(array) => O(N)
@@ -110,6 +111,14 @@ class Stack_Words(object):
         for line in file:
             self.words.append(line.strip())
         file.close()
+
+    def check(self):
+        for word in self.logged:
+            if word in  self.words:
+                print("used! ", word)
+                while word in self.words:
+                    self.words.remove(word)
+
 
 #Global variables
 path_to_extension   = r'/home/emiliovazquez/Web-Crawler/Webdriver/3.31.2_0'
