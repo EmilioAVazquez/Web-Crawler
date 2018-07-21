@@ -115,7 +115,6 @@ class Stack_Words(object):
     def check(self):
         for word in self.logged:
             if word in  self.words:
-                print("used! ", word)
                 while word in self.words:
                     self.words.remove(word)
 
@@ -254,11 +253,11 @@ if __name__ == '__main__':
 
         downloaded = downloaded + number_browsers
 
-        if downloaded%(336) == 0:
+        if downloaded%(60000) == 0:
             print(downloaded)
             break
 
-        if downloaded%(24) == 0:
+        if downloaded%(200) == 0:
             print('Number of words dondownloaded: ', downloaded,' Speed: ', (time.time() - ini_time)/downloaded, 'sec/wrd', ' Last words len ', input_words.get()[0], "  ", time.time() - ini_time)
 
         if downloaded%(1400) == 0:
