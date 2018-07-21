@@ -184,7 +184,6 @@ def update_synonyms_Tree(queue, xml_tree):
                 search = ET.SubElement(xml_tree, "word")
                 ET.SubElement(search, "title" ).text = result[0][0]
             if len(result[1]) != 0:#these are the synonyms
-                input_words.push(result[1])
                 array.extend(result[1])
                 for synonym in result[1]:
                     ET.SubElement(search, "syn").text = synonym
@@ -203,8 +202,8 @@ def reset_browsers():
 
     browser1            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver1 , port=9515)
     browser2            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver2 , port=9514)
-    #browser3            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver3 , port=9513)
-    #browser4            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver4 , port=9512)
+    browser3            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver3 , port=9513)
+    browser4            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver4 , port=9512)
 
 if __name__ == '__main__':
     #Data paths: input(words), output(xml file path and xml tree)
@@ -246,11 +245,11 @@ if __name__ == '__main__':
 
         downloaded = downloaded + number_browsers
 
-        if downloaded%(32) == 0:
+        if downloaded%(800) == 0:
             print(downloaded)
             break
 
-        if downloaded%(4) == 0:
+        if downloaded%(24) == 0:
             print('Number of words dondownloaded: ', downloaded,' Speed: ', (time.time() - ini_time)/downloaded, 'sec/wrd', ' Last words len ', input_words.get()[0], "  ", time.time() - ini_time)
 
         if downloaded%(1400) == 0:
