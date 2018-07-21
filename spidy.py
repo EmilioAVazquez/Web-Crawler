@@ -6,8 +6,6 @@ from selenium.webdriver.chrome.options import Options
 #This library is use to make changes to the webbrowser, like adding an Ad block or specifying a path.
 import xml.etree.cElementTree as ET
 #This library is use to make an xml tree that will store the data you scrape.
-import pyqtgraph as pg
-#For long scrapping sessions, this library will plot the status of the webcrawler.
 import multiprocessing
 #This library will increment the processeing and power of the webcrawler
 import numpy as np
