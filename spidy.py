@@ -251,7 +251,7 @@ if __name__ == '__main__':
             break
 
         if downloaded%(8) == 0:
-            print('Number of words dondownloaded: ', downloaded,' Speed: ', (time.time() - ini_time)/downloaded, 'sec/wrd', ' Last words len ', input_words.get(0)[0])
+            print('Number of words dondownloaded: ', downloaded,' Speed: ', (time.time() - ini_time)/downloaded, 'sec/wrd', ' Last words len ', input_words.get()[0])
 
         if downloaded%(1400) == 0:
             reset_browsers()
