@@ -147,6 +147,8 @@ def job(browser_number, word, queue):
     elif browser_number  == 4:
         browser =  browser4
 
+    browser.execute(Command.SET_TIMEOUTS, {'ms': float(my_timeout_secs * 1000), 'type': 'page load'})
+
     url      = "http://www.elmundo.es/diccionarios/"#URL to attack
     #print (input_words.get()[0].encode('ascii', 'ignore'))#print(input_words.get()[0].encode('latin1').decode('utf8'))
     #print (word.encode('ascii', 'ignore'))#print(word.encode('latin1').decode('utf8'))
