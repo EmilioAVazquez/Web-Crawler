@@ -69,7 +69,7 @@ class Stack_Words(object):
         array = self.del_logged(array)
         self.del_dupl(array)#mutator
         self.words.extend(array)
-        self.check()#will check for cuplciates in log and words
+        #self.check()#will check for cuplciates in log and words
         self.size   = len(self.words)
 
     def del_dupl(self, array):#Best case complexity: assuming N >> len(array) => O(N)
@@ -78,10 +78,11 @@ class Stack_Words(object):
                 self.words.remove(e)
 
     def del_logged(self, array):#Best case complexity: assuming L >> len(array) => O(L)
+        temp = []
         for e in array:
-            if e in self.logged:
-                array.remove(e)
-        return array
+            if e not in self.logged:
+                temp.append(e)
+        return temp
 
     def del_dup_input(self,array):
         temp = []
@@ -184,7 +185,7 @@ def retrive_fromfile_array(path):
     file.close()
     return array
 
-def update_synonyms_Tree(queue, xml_tree):
+def update_synonyms_Tree(queue, xml_tree):#unefficent as fuck!
     array = []
     while queue.empty() is False:
         for result in queue.get():
@@ -253,7 +254,7 @@ if __name__ == '__main__':
 
         downloaded = downloaded + number_browsers
 
-        if downloaded%(60000) == 0:
+        if downloaded%() == 0:
             print(downloaded)
             break
 
