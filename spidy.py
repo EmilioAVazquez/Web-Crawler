@@ -135,6 +135,10 @@ browser1            = webdriver.Chrome(chrome_options=chrome_options, executable
 browser2            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver2 , port=9514)
 browser3            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver3 , port=9513)
 browser4            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver4 , port=9512)
+browser1.set_page_load_timeout(7)
+browser2.set_page_load_timeout(7)
+browser3.set_page_load_timeout(7)
+browser4.set_page_load_timeout(7)
 
 def job(browser_number, word, queue):
 
@@ -146,8 +150,6 @@ def job(browser_number, word, queue):
         browser =  browser3
     elif browser_number  == 4:
         browser =  browser4
-
-    browser.execute(Command.SET_TIMEOUTS, {'ms': float(my_timeout_secs * 1000), 'type': 'page load'})
 
     url      = "http://www.elmundo.es/diccionarios/"#URL to attack
     #print (input_words.get()[0].encode('ascii', 'ignore'))#print(input_words.get()[0].encode('latin1').decode('utf8'))
@@ -214,6 +216,11 @@ def reset_browsers():
     browser2            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver2 , port=9514)
     browser3            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver3 , port=9513)
     browser4            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver4 , port=9512)
+
+    browser1.set_page_load_timeout(7)
+    browser2.set_page_load_timeout(7)
+    browser3.set_page_load_timeout(7)
+    browser4.set_page_load_timeout(7)
 
 if __name__ == '__main__':
     #Data paths: input(words), output(xml file path and xml tree)
