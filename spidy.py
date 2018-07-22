@@ -191,11 +191,13 @@ def update_synonyms_Tree(queue, xml_tree):#unefficent as fuck!
         for result in queue.get():
             if len(result[0]) != 0:#this is the word
                 search = ET.SubElement(xml_tree, "word")
+                print(result[0]][0])
                 ET.SubElement(search, "title" ).text = result[0][0]
             if len(result[1]) != 0:#these are the synonyms
                 array.extend(result[1])
                 for synonym in result[1]:
                     ET.SubElement(search, "syn").text = synonym
+    print("+")
     return array
 
 def reset_browsers():
