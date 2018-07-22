@@ -148,7 +148,6 @@ def job(browser_number, word, queue):
         browser =  browser4
 
     url      = "http://www.elmundo.es/diccionarios/"#URL to attack
-    word = input_words.get()[0]
     #print (input_words.get()[0].encode('ascii', 'ignore'))#print(input_words.get()[0].encode('latin1').decode('utf8'))
     #print (word.encode('ascii', 'ignore'))#print(word.encode('latin1').decode('utf8'))
 
@@ -191,13 +190,11 @@ def update_synonyms_Tree(queue, xml_tree):#unefficent as fuck!
         for result in queue.get():
             if len(result[0]) != 0:#this is the word
                 search = ET.SubElement(xml_tree, "word")
-                print(result[0]][0])
                 ET.SubElement(search, "title" ).text = result[0][0]
             if len(result[1]) != 0:#these are the synonyms
                 array.extend(result[1])
                 for synonym in result[1]:
                     ET.SubElement(search, "syn").text = synonym
-    print("+")
     return array
 
 def reset_browsers():
@@ -237,7 +234,6 @@ if __name__ == '__main__':
     input_words.load_words(path_to_notlogged)
     input_words.load_logged(path_to_logged)
     input_words.push(retrive_fromfile_array(path_to_seeds))
-    print(input_words.get()[0].encode('ascii','ignore'))
     queue = multiprocessing.Queue()#queue used for communication among the browsers
     number_browsers = 4#may chaneg dependingon the number of parallel browsers
     browsers = [1,2,3,4]
