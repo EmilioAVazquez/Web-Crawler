@@ -252,11 +252,11 @@ if __name__ == '__main__':
 
         downloaded = downloaded + number_browsers
 
-        if downloaded%(320) == 0:
+        if downloaded%(60000) == 0:
             print(downloaded)
             break
 
-        if downloaded%(32) == 0:
+        if downloaded%(200) == 0:
             print('Number of words dondownloaded: ', downloaded,' Speed: ', (time.time() - ini_time)/downloaded, 'sec/wrd', ' Last words len ', input_words.get()[0], "  ", time.time() - ini_time)
 
         if downloaded%(1400) == 0:
