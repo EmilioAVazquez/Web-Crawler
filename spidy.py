@@ -200,10 +200,11 @@ def update_synonyms_Tree(queue, xml_tree):#unefficent as fuck!
     flag = True
     while queue.empty() is False:
         for result in queue.get():
-            if result == "#ERROR GET" and flag:
-                reset_browsers()
-                flag = False
-            else:
+            if result == "#ERROR GET":
+                if flag == True:
+                    reset_browsers()
+                    flag = False
+            else  :
                 if len(result[0]) != 0:#this is the word
                     search = ET.SubElement(xml_tree, "word")
                     ET.SubElement(search, "title" ).text = result[0][0]
