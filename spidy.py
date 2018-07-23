@@ -263,27 +263,36 @@ if __name__ == '__main__':
     int_time = time.time()
 
     while flag:
-        words_to_search = input_words.get(number_browsers)
-        all_processes = [multiprocessing.Process(target=job, args = (browsers[i],words_to_search[i],queue)) for i in range(number_browsers)]
-        for p in all_processes:
-            p.start()
-        for p in all_processes:
-            p.join()
-        input_words.pop(number_browsers)#marked as visited
-        input_words.push(update_synonyms_Tree(queue, synonyms_xmlTree))
+        try:
+            words_to_search = input_words.get(number_browsers)
+            all_processes = [multiprocessing.Process(target=job, args = (browsers[i],words_to_search[i],queue)) for i in range(number_browsers)]
+            for p in all_processes:
+                p.start()
+            for p in all_processes:
+                p.join()
+            input_words.pop(number_browsers)#marked as visited
+            input_words.push(update_synonyms_Tree(queue, synonyms_xmlTree))
 
-        downloaded = downloaded + number_browsers
+            downloaded = downloaded + number_browsers
 
-        if downloaded%(60000) == 0:
-            print(downloaded)
-            break
+            if downloaded%(60000) == 0:
+                print(downloaded)
+                break
 
-        if downloaded%(200) == 0:
-            print('Number of words dondownloaded: ', downloaded,' Speed: ', (time.time() - ini_time)/downloaded, 'sec/wrd', ' Last words len ', input_words.get()[0], "  ", time.time() - ini_time)
+            if downloaded%(200) == 0:
+                print('Number of words dondownloaded: ', downloaded,' Speed: ', (time.time() - ini_time)/downloaded, 'sec/wrd', ' Last words len ', input_words.get()[0], "  ", time.time() - ini_time)
 
-        if downloaded%(800) == 0:
-            reset_browsers()
-
+            if downloaded%(800) == 0:
+                reset_browsers()
+        except:
+            input_words.backup(path_to_backupnl, path_to_backupl)
+            tree = ET.ElementTree(synonyms_xmlTree)
+            tree.write(path_to_synonymsDB)
+            browser1.quit()
+            browser2.quit()
+            browser3.quit()
+            browser4.quit()
+            print("it was saved!")
 
     input_words.backup(path_to_backupnl, path_to_backupl)
     tree = ET.ElementTree(synonyms_xmlTree)
