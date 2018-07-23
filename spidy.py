@@ -160,8 +160,9 @@ def job(browser_number, word, queue):
             browser.get(url) #navigate to the page
             access = False
         except:
-            reset_browsers()
+            queue.put("#ERROR GET")
             print("Did not get access to the url! already browser reset")
+            return
 
     selection    = browser.find_element_by_xpath("//input[@name='diccionario' and @value='2']")
     selection.click()# click radio button
@@ -196,15 +197,20 @@ def retrive_fromfile_array(path):
 
 def update_synonyms_Tree(queue, xml_tree):#unefficent as fuck!
     array = []
+    flag = True
     while queue.empty() is False:
         for result in queue.get():
-            if len(result[0]) != 0:#this is the word
-                search = ET.SubElement(xml_tree, "word")
-                ET.SubElement(search, "title" ).text = result[0][0]
-            if len(result[1]) != 0:#these are the synonyms
-                array.extend(result[1])
-                for synonym in result[1]:
-                    ET.SubElement(search, "syn").text = synonym
+            if result == "#ERROR GET" and flag:
+                reset_browsers()
+                flag = False
+            else:
+                if len(result[0]) != 0:#this is the word
+                    search = ET.SubElement(xml_tree, "word")
+                    ET.SubElement(search, "title" ).text = result[0][0]
+                if len(result[1]) != 0:#these are the synonyms
+                    array.extend(result[1])
+                    for synonym in result[1]:
+                        ET.SubElement(search, "syn").text = synonym
     return array
 
 def reset_browsers():
