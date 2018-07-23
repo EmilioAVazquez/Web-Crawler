@@ -154,8 +154,14 @@ def job(browser_number, word, queue):
     url      = "http://www.elmundo.es/diccionarios/"#URL to attack
     #print (input_words.get()[0].encode('ascii', 'ignore'))#print(input_words.get()[0].encode('latin1').decode('utf8'))
     #print (word.encode('ascii', 'ignore'))#print(word.encode('latin1').decode('utf8'))
-
-    browser.get(url) #navigate to the page
+    access = True
+    while access :
+        try:
+            browser.get(url) #navigate to the page
+            access = False
+        except:
+            reset_browsers()
+            print("Did not get access to the url! already browser reset")
 
     selection    = browser.find_element_by_xpath("//input[@name='diccionario' and @value='2']")
     selection.click()# click radio button
