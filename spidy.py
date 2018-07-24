@@ -239,10 +239,10 @@ def reset_browsers():
 if __name__ == '__main__':
     #Data paths: input(words), output(xml file path and xml tree)
     path_to_words       = "/home/emiliovazquez/Web-Crawler/Input_Files/listado-general.txt"
-    path_to_notlogged   = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged.txt"
-    path_to_logged      = "/home/emiliovazquez/Web-Crawler/Input_Files/logged.txt"
-    path_to_backupnl    = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged1.txt"
-    path_to_backupl     = "/home/emiliovazquez/Web-Crawler/Input_Files/logged1.txt"
+    path_to_notlogged   = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged1.txt"
+    path_to_logged      = "/home/emiliovazquez/Web-Crawler/Input_Files/logged1.txt"
+    path_to_backupnl    = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged2.txt"
+    path_to_backupl     = "/home/emiliovazquez/Web-Crawler/Input_Files/logged2.txt"
     path_to_seeds       = "/home/emiliovazquez/Web-Crawler/Input_Files/seeds.txt"
     path_to_synonymsDB  = "/home/emiliovazquez/Web-Crawler/Input_Files/synWords2.xml"
     synonyms_xmlTree    = ET.Element("data")
