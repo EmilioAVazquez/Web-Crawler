@@ -244,7 +244,7 @@ if __name__ == '__main__':
     path_to_backupnl    = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged1.txt"
     path_to_backupl     = "/home/emiliovazquez/Web-Crawler/Input_Files/logged1.txt"
     path_to_seeds       = "/home/emiliovazquez/Web-Crawler/Input_Files/seeds.txt"
-    path_to_synonymsDB  = "/home/emiliovazquez/Web-Crawler/Input_Files/synWords1.xml"
+    path_to_synonymsDB  = "/home/emiliovazquez/Web-Crawler/Input_Files/synWords2.xml"
     synonyms_xmlTree    = ET.Element("data")
 
     #User update interface
