@@ -161,7 +161,7 @@ def job(browser_number, word, queue):
             access = False
         except:
             queue.put("#ERROR GET")
-            print("Did not get access to the url! already browser reset")
+            print( "Encounter get Timeout" )
             return
 
     selection    = browser.find_element_by_xpath("//input[@name='diccionario' and @value='2']")
@@ -203,6 +203,7 @@ def update_synonyms_Tree(queue, xml_tree):#unefficent as fuck!
             if result == "#ERROR GET":
                 if flag == True:
                     reset_browsers()
+                    print("Did not get access to the url! already browser reset")
                     flag = False
             else  :
                 if len(result[0]) != 0:#this is the word
@@ -284,7 +285,7 @@ if __name__ == '__main__':
 
             if downloaded%(800) == 0:
                 reset_browsers()
-        except:
+        except Exception as e :
             input_words.backup(path_to_backupnl, path_to_backupl)
             tree = ET.ElementTree(synonyms_xmlTree)
             tree.write(path_to_synonymsDB)
@@ -292,7 +293,9 @@ if __name__ == '__main__':
             browser2.quit()
             browser3.quit()
             browser4.quit()
+            print(e)
             print("it was saved!")
+            break
 
     input_words.backup(path_to_backupnl, path_to_backupl)
     tree = ET.ElementTree(synonyms_xmlTree)
