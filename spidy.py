@@ -131,6 +131,7 @@ chrome_options      = Options()
 chrome_options.add_argument('load-extension=' + path_to_extension)#Adblocker
 chrome_options.add_argument("--headless")#Headless
 chrome_options.add_argument("--window-size=1920x1080")
+chrome_options.add_argument('--no-sandbox')
 browser1            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver1 , port=9515)
 browser2            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver2 , port=9514)
 browser3            = webdriver.Chrome(chrome_options=chrome_options, executable_path=path_to_driver3 , port=9513)
@@ -239,12 +240,12 @@ def reset_browsers():
 if __name__ == '__main__':
     #Data paths: input(words), output(xml file path and xml tree)
     path_to_words       = "/home/emiliovazquez/Web-Crawler/Input_Files/listado-general.txt"
-    path_to_notlogged   = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged1.txt"
-    path_to_logged      = "/home/emiliovazquez/Web-Crawler/Input_Files/logged1.txt"
-    path_to_backupnl    = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged2.txt"
-    path_to_backupl     = "/home/emiliovazquez/Web-Crawler/Input_Files/logged2.txt"
+    path_to_notlogged   = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged2.txt"
+    path_to_logged      = "/home/emiliovazquez/Web-Crawler/Input_Files/logged2.txt"
+    path_to_backupnl    = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged3.txt"
+    path_to_backupl     = "/home/emiliovazquez/Web-Crawler/Input_Files/logged3.txt"
     path_to_seeds       = "/home/emiliovazquez/Web-Crawler/Input_Files/seeds.txt"
-    path_to_synonymsDB  = "/home/emiliovazquez/Web-Crawler/Input_Files/synWords2.xml"
+    path_to_synonymsDB  = "/home/emiliovazquez/Web-Crawler/Input_Files/synWords3.xml"
     synonyms_xmlTree    = ET.Element("data")
 
     #User update interface
