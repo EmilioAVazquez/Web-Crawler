@@ -161,10 +161,11 @@ def job(browser_number, word, queue):
             browser.get(url) #navigate to the page
             access = False
         except:
+            access = True
             queue.put("#ERROR GET")
             print( "Encounter get Timeout" )
             return
-
+    if access == True: print (access)
     selection    = browser.find_element_by_xpath("//input[@name='diccionario' and @value='2']")
     selection.click()# click radio button
 
@@ -240,12 +241,12 @@ def reset_browsers():
 if __name__ == '__main__':
     #Data paths: input(words), output(xml file path and xml tree)
     path_to_words       = "/home/emiliovazquez/Web-Crawler/Input_Files/listado-general.txt"
-    path_to_notlogged   = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged2.txt"
-    path_to_logged      = "/home/emiliovazquez/Web-Crawler/Input_Files/logged2.txt"
-    path_to_backupnl    = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged3.txt"
-    path_to_backupl     = "/home/emiliovazquez/Web-Crawler/Input_Files/logged3.txt"
+    path_to_notlogged   = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged3.txt"
+    path_to_logged      = "/home/emiliovazquez/Web-Crawler/Input_Files/logged3.txt"
+    path_to_backupnl    = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged4.txt"
+    path_to_backupl     = "/home/emiliovazquez/Web-Crawler/Input_Files/logged4.txt"
     path_to_seeds       = "/home/emiliovazquez/Web-Crawler/Input_Files/seeds.txt"
-    path_to_synonymsDB  = "/home/emiliovazquez/Web-Crawler/Input_Files/synWords3.xml"
+    path_to_synonymsDB  = "/home/emiliovazquez/Web-Crawler/Input_Files/synWords4.xml"
     synonyms_xmlTree    = ET.Element("data")
 
     #User update interface
