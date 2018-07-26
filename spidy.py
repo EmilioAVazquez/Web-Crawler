@@ -181,9 +181,9 @@ def job(browser_number, word, queue):
 
     head = []
     body = []
-    if title != None:#this is the word
+    if len(title) != 0:#this is the word
         head.append(title[0].text)
-    if synonyms != None:#these are the synonyms had : len (synonyms)
+    if len(synonyms) != 0:#these are the synonyms had : len (synonyms)
         for s in synonyms:
             body.append(s.text)
     queue.put([[head,body]])
