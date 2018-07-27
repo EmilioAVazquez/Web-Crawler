@@ -165,7 +165,7 @@ def job(browser_number, word, queue):
             queue.put("#ERROR GET")
             print( "Encounter get Timeout" )
             return
-    if access == True: print (access)
+    if access == True: print (access)##Delete after debugging ends
     selection    = browser.find_element_by_xpath("//input[@name='diccionario' and @value='2']")
     selection.click()# click radio button
 
@@ -182,11 +182,15 @@ def job(browser_number, word, queue):
 
     head = []
     body = []
-    if len(title) != 0:#this is the word
-        head.append(title[0].text)
-    if len(synonyms) != 0:#these are the synonyms had : len (synonyms)
-        for s in synonyms:
-            body.append(s.text)
+    try:
+        if len(title) != 0:#this is the word
+            head.append(title[0].text)
+        if len(synonyms) != 0:#these are the synonyms had : len (synonyms)
+            for s in synonyms:
+                body.append(s.text)
+    except Exception as e:
+        print(e)
+        print(word)
     queue.put([[head,body]])
 
 def retrive_fromfile_array(path):
@@ -241,12 +245,12 @@ def reset_browsers():
 if __name__ == '__main__':
     #Data paths: input(words), output(xml file path and xml tree)
     path_to_words       = "/home/emiliovazquez/Web-Crawler/Input_Files/listado-general.txt"
-    path_to_notlogged   = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged3.txt"
-    path_to_logged      = "/home/emiliovazquez/Web-Crawler/Input_Files/logged3.txt"
-    path_to_backupnl    = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged4.txt"
-    path_to_backupl     = "/home/emiliovazquez/Web-Crawler/Input_Files/logged4.txt"
+    path_to_notlogged   = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged4.txt"
+    path_to_logged      = "/home/emiliovazquez/Web-Crawler/Input_Files/logged4.txt"
+    path_to_backupnl    = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged5.txt"
+    path_to_backupl     = "/home/emiliovazquez/Web-Crawler/Input_Files/logged5.txt"
     path_to_seeds       = "/home/emiliovazquez/Web-Crawler/Input_Files/seeds.txt"
-    path_to_synonymsDB  = "/home/emiliovazquez/Web-Crawler/Input_Files/synWords4.xml"
+    path_to_synonymsDB  = "/home/emiliovazquez/Web-Crawler/Input_Files/synWords5.xml"
     synonyms_xmlTree    = ET.Element("data")
 
     #User update interface
