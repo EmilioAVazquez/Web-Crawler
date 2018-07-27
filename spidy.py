@@ -163,7 +163,7 @@ def job(browser_number, word, queue):
         access = False
     except:
         access = True
-        queue.put("#ERROR GET")
+        queue.put(["#ERROR GET"])
         print( "Encounter get Timeout" )
         return
 
@@ -211,7 +211,7 @@ def update_synonyms_Tree(queue, xml_tree):#unefficent as fuck!
     flag = True
     while queue.empty() is False:
         for result in queue.get():
-            if result[0] == "#ERROR GET":
+            if result == "#ERROR GET":
                 if flag == True:
                     reset_browsers()
                     print("Did not get access to the url! already browser reset")
