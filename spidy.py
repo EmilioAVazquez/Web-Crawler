@@ -165,32 +165,35 @@ def job(browser_number, word, queue):
             queue.put("#ERROR GET")
             print( "Encounter get Timeout" )
             return
-    if access == True: print (access)##Delete after debugging ends
-    selection    = browser.find_element_by_xpath("//input[@name='diccionario' and @value='2']")
-    selection.click()# click radio button
-
-    text_area    = browser.find_element_by_xpath("//input[@name='busca' and @type='text']")
-    text_area.send_keys(word)# type text
-
-    submit_button= browser.find_elements_by_xpath("//input[@name='submit' and @class='buscar']")[0]
-    submit_button.click()
-
-    name         = browser.find_element_by_xpath("//div[@class='resultado']")
-
-    title        = name.find_elements_by_tag_name('h2')
-    synonyms     = name.find_elements_by_tag_name('li')
-
-    head = []
-    body = []
     try:
+        if access == True: print (access)##Delete after debugging ends
+        selection    = browser.find_element_by_xpath("//input[@name='diccionario' and @value='2']")
+        selection.click()# click radio button
+
+        text_area    = browser.find_element_by_xpath("//input[@name='busca' and @type='text']")
+        text_area.send_keys(word)# type text
+
+        submit_button= browser.find_elements_by_xpath("//input[@name='submit' and @class='buscar']")[0]
+        submit_button.click()
+
+        name         = browser.find_element_by_xpath("//div[@class='resultado']")
+
+        title        = name.find_elements_by_tag_name('h2')
+        synonyms     = name.find_elements_by_tag_name('li')
+
+        head = []
+        body = []
+
         if len(title) != 0:#this is the word
             head.append(title[0].text)
         if len(synonyms) != 0:#these are the synonyms had : len (synonyms)
             for s in synonyms:
                 body.append(s.text)
+
     except Exception as e:
         print(e)
         print(word)
+        return
     queue.put([[head,body]])
 
 def retrive_fromfile_array(path):
