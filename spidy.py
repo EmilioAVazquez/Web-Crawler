@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import xml.etree.cElementTree as ET
+import sys, traceback
 import multiprocessing
 import time
 
@@ -156,15 +157,16 @@ def job(browser_number, word, queue):
     #print (input_words.get()[0].encode('ascii', 'ignore'))#print(input_words.get()[0].encode('latin1').decode('utf8'))
     #print (word.encode('ascii', 'ignore'))#print(word.encode('latin1').decode('utf8'))
     access = True
-    while access :
-        try:
-            browser.get(url) #navigate to the page
-            access = False
-        except:
-            access = True
-            queue.put("#ERROR GET")
-            print( "Encounter get Timeout" )
-            return
+
+    try:
+        browser.get(url) #navigate to the page
+        access = False
+    except:
+        access = True
+        queue.put("#ERROR GET")
+        print( "Encounter get Timeout" )
+        return
+
     try:
         if access == True: print (access)##Delete after debugging ends
         selection    = browser.find_element_by_xpath("//input[@name='diccionario' and @value='2']")
@@ -295,6 +297,7 @@ if __name__ == '__main__':
             if downloaded%(800) == 0:
                 reset_browsers()
         except Exception as e :
+            traceback.print_exc()
             input_words.backup(path_to_backupnl, path_to_backupl)
             tree = ET.ElementTree(synonyms_xmlTree)
             tree.write(path_to_synonymsDB)
