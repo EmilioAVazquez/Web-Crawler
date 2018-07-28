@@ -284,7 +284,7 @@ if __name__ == '__main__':
 
             downloaded = downloaded + number_browsers
 
-            if downloaded%(20) == 0:
+            if downloaded%(100000) == 0:
                 print(downloaded)
                 break
 
