@@ -249,13 +249,11 @@ def reset_browsers():
 
 if __name__ == '__main__':
     #Data paths: input(words), output(xml file path and xml tree)
-    path_to_words       = "/home/emiliovazquez/Web-Crawler/Input_Files/listado-general.txt"
-    path_to_notlogged   = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged4.txt"
-    path_to_logged      = "/home/emiliovazquez/Web-Crawler/Input_Files/logged4.txt"
-    path_to_backupnl    = "/home/emiliovazquez/Web-Crawler/Input_Files/notlogged5.txt"
-    path_to_backupl     = "/home/emiliovazquez/Web-Crawler/Input_Files/logged5.txt"
     path_to_seeds       = "/home/emiliovazquez/Web-Crawler/Input_Files/seeds.txt"
-    path_to_synonymsDB  = "/home/emiliovazquez/Web-Crawler/Input_Files/synWords5.xml"
+    path_to_words       = "/home/emiliovazquez/Web-Crawler/Input_Files/listado_general.txt"
+    path_to_backupnl    = "/home/emiliovazquez/Web-Crawler/Output_Files/not_logged.txt"
+    path_to_backupl     = "/home/emiliovazquez/Web-Crawler/Output_Files/logged.txt"
+    path_to_synonymsDB  = "/home/emiliovazquez/Web-Crawler/Output_Files/synonyms_words.xml"
     synonyms_xmlTree    = ET.Element("data")
 
     #User update interface
@@ -265,8 +263,7 @@ if __name__ == '__main__':
 
 
     input_words = Stack_Words([])
-    input_words.load_words(path_to_notlogged)
-    input_words.load_logged(path_to_logged)
+    input_words.load_words(path_to_words)
     input_words.push(retrive_fromfile_array(path_to_seeds))
     queue = multiprocessing.Queue()#queue used for communication among the browsers
     number_browsers = 4#may chaneg dependingon the number of parallel browsers
@@ -287,7 +284,7 @@ if __name__ == '__main__':
 
             downloaded = downloaded + number_browsers
 
-            if downloaded%(60000) == 0:
+            if downloaded%(20) == 0:
                 print(downloaded)
                 break
 
